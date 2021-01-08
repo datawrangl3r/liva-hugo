@@ -49,6 +49,7 @@
           <div class="col-12">
             <textarea name="message" id="message" class="form-control mb-4" placeholder="Your Message"></textarea>
           </div>
+          <input type="hidden" id="captchaResponse" name="g-recaptcha-response">
           <div class="col-12">
             <button type="submit" class="btn btn-primary">send message</button>
           </div>
@@ -58,4 +59,12 @@
   </div>
 </section>
 
+<script>
+  grecaptcha.ready(function() {
+      grecaptcha.execute('YOUR_SITE_KEY', {action: 'homepage'})
+      .then(function(token) {
+        document.getElementById('captchaResponse').value = token;
+      });
+    });
+</script>
 {{ end }}
